@@ -3,7 +3,7 @@ name: Environment Deployment
 on:
   push:
     branches:
-      - patch-1
+      - patch
   workflow_dispatch:
     inputs:
       ref:
