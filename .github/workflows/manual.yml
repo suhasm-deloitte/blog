@@ -6,20 +6,12 @@ on:
       - patch
   workflow_dispatch:
     inputs:
-      ref:
-        type: choice
-        description: 'Select a reference'
-        required: true
-        options:
-          - 'patch-1'
-          - 'main'
       environment:
         type: choice
         description: Choose an environment
         options:
           - "QA-Internal"
-          - "DEV"
-          
+          - "DEV"   
 
 jobs:
   deploy:
@@ -31,6 +23,7 @@ jobs:
 
       - name: Deploy to selected environment
         run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
           environment="${{ github.event.inputs.environment }}"
           echo "Deploying to $environment environment..."
           
